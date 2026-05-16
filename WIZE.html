@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIZE - Young Graphic Designers</title>
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --surface: #1a1a1a;
+            --surface2: #222;
+            --surface3: #2a2a2a;
+            --red: #e63946;
+            --red-hover: #c5303c;
+            --red-glow: rgba(230, 57, 70, 0.3);
+            --text: #f1f1f1;
+            --text2: #b0b0b0;
+            --text3: #777;
+            --border: #333;
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.25s ease;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+            --shadow-red: 0 0 40px rgba(230, 57, 70, 0.25);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--red);
+        }
+
+        /* Header / Nav */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--red);
+            text-shadow: 0 0 30px var(--red-glow);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo:hover {
+            text-shadow: 0 0 50px rgba(230, 57, 70, 0.6);
+            transform: scale(1.03);
+        }
+        .logo .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+            box-shadow: 0 0 16px var(--red-glow);
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.8);
+                opacity: 0.5;
+            }
+        }
+        .subtitle {
+            font-size: 0.75rem;
+            color: var(--text2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+        nav {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        nav a {
+            color: var(--text2);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 6px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        nav a:hover,
+        nav a.active {
+            color: #fff;
+            background: var(--surface3);
+        }
+        nav a.accent {
+            background: var(--red);
+            color: #fff;
+            font-weight: 600;
+        }
+        nav a.accent:hover {
+            background: var(--red-hover);
+            box-shadow: var(--shadow-red);
+        }
+
+        /* Sections */
+        section {
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: var(--red);
+            border-radius: 2px;
+            box-shadow: 0 0 12px var(--red-glow);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            color: #fff;
+            text-shadow: 0 0 60px var(--red-glow);
+            margin-bottom: 8px;
+        }
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--text2);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .hero .hero-red {
+            color: var(--red);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: #555;
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+        .card .day-badge {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .card .name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 4px 0;
+        }
+        .card .role {
+            font-size: 0.85rem;
+            color: var(--text2);
+        }
+        .card.whatsapp-card {
+            cursor: pointer;
+            border-left: 3px solid #25D366;
+            transition: var(--transition);
+        }
+        .card.whatsapp-card:hover {
+            border-left-color: #25D366;
+            background: #1a1f1a;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.15);
+        }
+        .card.whatsapp-card .wa-number {
+            font-size: 0.9rem;
+            color: #25D366;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .card.whatsapp-card .wa-icon {
+            font-size: 1.4rem;
+        }
+
+        /* Info Cards */
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .info-chip {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .info-chip:hover {
+            border-color: var(--red);
+            box-shadow: 0 0 16px var(--red-glow);
+        }
+        .info-chip .chip-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Upload Section */
+        .upload-zone {
+            background: var(--surface);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .upload-zone:hover,
+        .upload-zone.drag-over {
+            border-color: var(--red);
+            background: #1a1112;
+            box-shadow: inset 0 0 40px rgba(230, 57, 70, 0.06);
+        }
+        .upload-zone .upload-icon {
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        .upload-zone:hover .upload-icon {
+            opacity: 1;
+            transform: translateY(-4px);
+        }
+        .upload-zone .upload-text {
+            font-size: 1rem;
+            color: var(--text2);
+            letter-spacing: 1px;
+        }
+        .upload-zone .upload-hint {
+            font-size: 0.75rem;
+            color: var(--text3);
+        }
+        #fileInput {
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            font-family: var(--font);
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .btn-red {
+            background: var(--red);
+            color: #fff;
+        }
+        .btn-red:hover {
+            background: var(--red-hover);
+            box-shadow: var(--shadow-red);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+        .btn-outline:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+        .btn-sm {
+            padding: 7px 16px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+        }
+        .btn-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            font-size: 1.2rem;
+        }
+        .btn-save {
+            background: #25D366;
+            color: #000;
+            font-weight: 700;
+        }
+        .btn-save:hover {
+            background: #1fb855;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
+        }
+        .btn-delete {
+            background: transparent;
+            border: 1px solid #555;
+            color: #f88;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+        .btn-delete:hover {
+            background: #2a1111;
+            border-color: #e63946;
+            color: #e63946;
+        }
+
+        /* File Gallery */
+        .file-manager-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .folder-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex: 1;
+        }
+        .folder-tab {
+            padding: 8px 18px;
+            border-radius: 25px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text2);
+            white-space: nowrap;
+        }
+        .folder-tab.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+            font-weight: 700;
+        }
+        .folder-tab:hover:not(.active) {
+            border-color: #666;
+            color: #fff;
+        }
+        .folder-input-wrap {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .folder-input-wrap input {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            width: 140px;
+            font-family: var(--font);
+            outline: none;
+            transition: var(--transition);
+        }
+        .folder-input-wrap input:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 10px var(--red-glow);
+        }
+
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .file-card {
+            background: var(--surface2);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .file-card:hover {
+            border-color: var(--red);
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.2);
+            transform: translateY(-3px);
+        }
+        .file-card .thumb {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #444;
+            position: relative;
+        }
+        .file-card .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .file-card .thumb .video-icon-overlay {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+        .file-card .file-info {
+            padding: 8px 10px;
+        }
+        .file-card .file-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .file-card .file-meta {
+            font-size: 0.7rem;
+            color: var(--text3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2px;
+        }
+        .file-card .delete-file-btn {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #f66;
+            border: none;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .file-card:hover .delete-file-btn {
+            opacity: 1;
+        }
+        .file-card .delete-file-btn:hover {
+            background: #e63946;
+            color: #fff;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text3);
+            font-size: 0.95rem;
+            grid-column: 1 / -1;
+        }
+        .empty-state .empty-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+
+        /* Upload Progress */
+        .upload-progress-wrap {
+            margin-top: 12px;
+            display: none;
+        }
+        .upload-progress-wrap.active {
+            display: block;
+        }
+        .upload-progress-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            background: var(--surface2);
+            border-radius: 20px;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
+        }
+        .upload-progress-item .progress-bar-bg {
+            flex: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .upload-progress-item .progress-bar-fill {
+            height: 100%;
+            background: var(--red);
+            border-radius: 3px;
+            transition: width 0.2s;
+            width: 0%;
+        }
+        .upload-progress-item .progress-pct {
+            font-weight: 700;
+            color: var(--red);
+            min-width: 40px;
+            text-align: right;
+        }
+
+        /* Save indicator */
+        .save-indicator {
+            font-size: 0.75rem;
+            color: #25D366;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .save-indicator.visible {
+            opacity: 1;
+        }
+        .save-indicator .check {
+            font-size: 1rem;
+        }
+
+        /* Fullscreen Viewer */
+        .viewer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.96);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            cursor: default;
+        }
+        .viewer-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .viewer-overlay .viewer-content {
+            max-width: 95vw;
+            max-height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: pan-y pinch-zoom;
+        }
+        .viewer-overlay img {
+            max-width: 95vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+            transition: transform 0.15s ease-out;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .viewer-overlay video {
+            max-width: 95vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+            outline: none;
+        }
+        .viewer-close {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            font-size: 1.8rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .viewer-close:hover {
+            background: rgba(230, 57, 70, 0.7);
+            transform: scale(1.1);
+        }
+        .viewer-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: none;
+            font-size: 2rem;
+            width: 48px;
+            height: 60px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .viewer-nav:hover {
+            background: rgba(230, 57, 70, 0.6);
+        }
+        .viewer-nav.prev {
+            left: 10px;
+        }
+        .viewer-nav.next {
+            right: 10px;
+        }
+        .viewer-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
+        }
+        .viewer-file-name {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 10000;
+            color: #ccc;
+            font-size: 0.85rem;
+            max-width: 50vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px 14px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #222;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            z-index: 20000;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            pointer-events: none;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+        .toast.success {
+            border-color: #25D366;
+            color: #25D366;
+        }
+        .toast.error {
+            border-color: #e63946;
+            color: #e63946;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text3);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        footer .social-links a {
+            color: var(--text2);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        footer .social-links a:hover {
+            color: #fff;
+            border-color: #fff;
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.1);
+        }
+        footer .social-links .yt:hover {
+            border-color: #ff0000;
+            color: #ff4444;
+            box-shadow: 0 0 16px rgba(255, 0, 0, 0.25);
+        }
+        footer .social-links .ig:hover {
+            border-color: #e1306c;
+            color: #e1306c;
+            box-shadow: 0 0 16px rgba(225, 48, 108, 0.25);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+            .hero .tagline {
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+            nav {
+                gap: 6px;
+            }
+            nav a {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+            }
+            .file-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 8px;
+            }
+            .viewer-nav {
+                width: 36px;
+                height: 44px;
+                font-size: 1.4rem;
+            }
+            .viewer-nav.prev {
+                left: 4px;
+            }
+            .viewer-nav.next {
+                right: 4px;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 24px 12px;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div style="display:flex;align-items:center;gap:10px;">
+            <div class="logo" onclick="scrollToTop()">WIZE<span class="dot"></span></div>
+            <span class="subtitle">The young graphic designers</span>
+        </div>
+        <nav>
+            <a href="#team">Team</a>
+            <a href="#design">Design</a>
+            <a href="#files">Files</a>
+            <a href="#contact">Contact</a>
+            <a href="#files" class="accent">📤 Upload</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>W<span class="hero-red">I</span>ZE</h1>
+        <p class="tagline">The Young Graphic Designers</p>
+    </section>
+
+    <!-- Team Schedule -->
+    <section id="team">
+        <h2 class="section-title">Design Day For Each</h2>
+        <div class="cards-grid">
+            <div class="card"><span class="day-badge">Monday</span><div class="name">Miyuru</div></div>
+            <div class="card"><span class="day-badge">Tuesday</span><div class="name">Kalunka</div></div>
+            <div class="card"><span class="day-badge">Wednesday</span><div class="name">Kinura</div></div>
+            <div class="card"><span class="day-badge">Thursday</span><div class="name">Thinula</div></div>
+            <div class="card"><span class="day-badge">Friday</span><div class="name">Thinuga</div></div>
+            <div class="card"><span class="day-badge">Saturday</span><div class="name">Reply to comments</div></div>
+            <div class="card"><span class="day-badge">Sunday</span><div class="name">Watching tutorials</div></div>
+        </div>
+    </section>
+
+    <!-- Design Style & Apps -->
+    <section id="design">
+        <h2 class="section-title">Design Style</h2>
+        <p style="margin-bottom:16px;color:var(--text2);font-size:1rem;">
+            When we design logos and thumbnails, we use <strong style="color:var(--red);">RED</strong> color more.
+        </p>
+        <h3 style="margin-bottom:10px;color:#fff;font-size:1rem;letter-spacing:1px;">Using Apps</h3>
+        <div class="info-row">
+            <span class="info-chip"><span class="chip-icon">🎬</span> DaVinci Resolve <small style="color:var(--text3);margin-left:4px;">(only if can run it)</small></span>
+            <span class="info-chip"><span class="chip-icon">📱</span> CapCut PC/mobile</span>
+            <span class="info-chip"><span class="chip-icon">🎨</span> Affinity</span>
+            <span class="info-chip"><span class="chip-icon">✏️</span> Canva</span>
+        </div>
+        <h3 style="margin:20px 0 10px;color:#fff;font-size:1rem;letter-spacing:1px;">We Design</h3>
+        <div class="info-row">
+            <span class="info-chip"><span class="chip-icon">🖼️</span> Photos</span>
+            <span class="info-chip"><span class="chip-icon">🔷</span> Logos</span>
+            <span class="info-chip"><span class="chip-icon">📜</span> Posters</span>
+            <span class="info-chip"><span class="chip-icon">🎥</span> Videos (tutorials / edits)</span>
+        </div>
+        <p style="margin-top:16px;color:var(--text3);font-size:0.85rem;">
+            ⚡ All designs should be screen recorded and uploaded to YouTube
+        </p>
+    </section>
+
+    <!-- File Manager -->
+    <section id="files">
+        <h2 class="section-title">📁 Upload & Manage Files</h2>
+        <p style="color:var(--text2);margin-bottom:16px;font-size:0.9rem;">
+            Upload your videos (edits/projects), posters, and photos. All files are saved automatically in your browser storage.
+        </p>
+
+        <!-- Upload Zone -->
+        <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+            <span class="upload-icon">📤</span>
+            <span class="upload-text">Tap to Upload Videos & Photos</span>
+            <span class="upload-hint">Supports all file types · Phone gallery · File browser</span>
+        </div>
+        <input type="file" id="fileInput" multiple accept="*/*" />
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+            <button class="btn btn-red btn-sm" onclick="document.getElementById('fileInput').click()">📤 Upload Files</button>
+            <button class="btn btn-outline btn-sm" onclick="document.getElementById('fileInput').click()">📂 Browse Files</button>
+            <button class="btn btn-save btn-sm" id="saveBtn" onclick="manualSave()">💾 Save Progress</button>
+            <span class="save-indicator" id="saveIndicator"><span class="check">✅</span> Saved</span>
+        </div>
+
+        <!-- Upload Progress -->
+        <div class="upload-progress-wrap" id="uploadProgressWrap"></div>
+
+        <!-- Folder Tabs -->
+        <div class="file-manager-toolbar" style="margin-top:20px;">
+            <div class="folder-tabs" id="folderTabs">
+                <span class="folder-tab active" data-folder="all">📁 All Files</span>
+            </div>
+            <div class="folder-input-wrap">
+                <input type="text" id="newFolderInput" placeholder="New folder name..." maxlength="40" />
+                <button class="btn btn-outline btn-sm" onclick="createFolder()">+ Folder</button>
+            </div>
+        </div>
+
+        <!-- File Grid -->
+        <div class="file-grid" id="fileGrid">
+            <div class="empty-state">
+                <span class="empty-icon">📭</span>
+                No files uploaded yet.<br>Tap the upload area above to get started!
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Contacts -->
+    <section id="contact">
+        <h2 class="section-title">📞 WhatsApp Numbers</h2>
+        <div class="cards-grid">
+            <div class="card whatsapp-card" onclick="openWhatsApp('94716864484')">
+                <span class="wa-icon">💬</span>
+                <div class="name">Thinuga</div>
+                <div class="wa-number">071 686 4484</div>
+            </div>
+            <div class="card whatsapp-card" onclick="openWhatsApp('94761970811')">
+                <span class="wa-icon">💬</span>
+                <div class="name">Kinura</div>
+                <div class="wa-number">076 197 0811</div>
+            </div>
+            <div class="card whatsapp-card" onclick="openWhatsApp('94766490387')">
+                <span class="wa-icon">💬</span>
+                <div class="name">Miyuru</div>
+                <div class="wa-number">076 649 0387</div>
+            </div>
+            <div class="card whatsapp-card" onclick="openWhatsApp('94769930660')">
+                <span class="wa-icon">💬</span>
+                <div class="name">Thinula</div>
+                <div class="wa-number">076 9930 660</div>
+            </div>
+            <div class="card whatsapp-card" onclick="openWhatsApp('94716903422')">
+                <span class="wa-icon">💬</span>
+                <div class="name">Kalunka</div>
+                <div class="wa-number">071 690 3422</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://youtube.com/@wize6473" target="_blank" rel="noopener" class="yt">▶️ YouTube @wize6473</a>
+            <a href="https://instagram.com/wize.vfx" target="_blank" rel="noopener" class="ig">📷 Instagram @wize.vfx</a>
+        </div>
+        <p>WIZE · The Young Graphic Designers · © 2024</p>
+    </footer>
+
+    <!-- Fullscreen Viewer Overlay -->
+    <div class="viewer-overlay" id="viewerOverlay">
+        <button class="viewer-close" id="viewerClose" title="Close">✕</button>
+        <button class="viewer-nav prev" id="viewerPrev" title="Previous">◀</button>
+        <button class="viewer-nav next" id="viewerNext" title="Next">▶</button>
+        <div class="viewer-content" id="viewerContent"></div>
+        <div class="viewer-counter" id="viewerCounter"></div>
+        <div class="viewer-file-name" id="viewerFileName"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        (function() {
+            // ============ INDEXED DB ============
+            const DB_NAME = 'WizeDesignDB';
+            const DB_VERSION = 2;
+            let db = null;
+
+            function openDB() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(DB_NAME, DB_VERSION);
+                    request.onupgradeneeded = (e) => {
+                        const database = e.target.result;
+                        if (!database.objectStoreNames.contains('folders')) {
+                            database.createObjectStore('folders', { keyPath: 'id', autoIncrement: true });
+                        }
+                        if (!database.objectStoreNames.contains('files')) {
+                            const fileStore = database.createObjectStore('files', { keyPath: 'id',
+                                autoIncrement: true });
+                            if (!fileStore.indexNames.contains('folderId')) {
+                                fileStore.createIndex('folderId', 'folderId', { unique: false });
+                            }
+                        }
+                    };
+                    request.onsuccess = (e) => {
+                        db = e.target.result;
+                        resolve(db);
+                    };
+                    request.onerror = (e) => {
+                        console.error('IndexedDB error:', e.target.error);
+                        reject(e.target.error);
+                    };
+                });
+            }
+
+            function dbAdd(storeName, data) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.add(data);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            function dbPut(storeName, data) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.put(data);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            function dbGetAll(storeName) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.getAll();
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            function dbGet(storeName, id) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const request = store.get(id);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            function dbDelete(storeName, id) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readwrite');
+                    const store = tx.objectStore(storeName);
+                    const request = store.delete(id);
+                    request.onsuccess = () => resolve();
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            function dbGetByIndex(storeName, indexName, value) {
+                return new Promise((resolve, reject) => {
+                    if (!db) { reject('DB not open'); return; }
+                    const tx = db.transaction(storeName, 'readonly');
+                    const store = tx.objectStore(storeName);
+                    const index = store.index(indexName);
+                    const request = index.getAll(value);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            // ============ STATE ============
+            let allFiles = [];
+            let allFolders = [];
+            let currentFolderId = 'all';
+            let viewerFiles = []; // files currently in viewer (filtered)
+            let viewerIndex = 0;
+            let isViewerOpen = false;
+            let saveTimeout = null;
+            const FOLDER_ALL = 'all';
+
+            // ============ DOM REFS ============
+            const fileInput = document.getElementById('fileInput');
+            const uploadZone = document.getElementById('uploadZone');
+            const uploadProgressWrap = document.getElementById('uploadProgressWrap');
+            const fileGrid = document.getElementById('fileGrid');
+            const folderTabs = document.getElementById('folderTabs');
+            const newFolderInput = document.getElementById('newFolderInput');
+            const saveIndicator = document.getElementById('saveIndicator');
+            const viewerOverlay = document.getElementById('viewerOverlay');
+            const viewerContent = document.getElementById('viewerContent');
+            const viewerClose = document.getElementById('viewerClose');
+            const viewerPrev = document.getElementById('viewerPrev');
+            const viewerNext = document.getElementById('viewerNext');
+            const viewerCounter = document.getElementById('viewerCounter');
+            const viewerFileName = document.getElementById('viewerFileName');
+            const toastEl = document.getElementById('toast');
+
+            // ============ TOAST ============
+            let toastTimer;
+
+            function showToast(msg, type = '') {
+                clearTimeout(toastTimer);
+                toastEl.textContent = msg;
+                toastEl.className = 'toast ' + type + ' show';
+                toastTimer = setTimeout(() => {
+                    toastEl.classList.remove('show');
+                }, 2500);
+            }
+
+            // ============ SAVE INDICATOR ============
+            function flashSaved() {
+                saveIndicator.classList.add('visible');
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveIndicator.classList.remove('visible');
+                }, 2000);
+            }
+
+            function manualSave() {
+                // Data is already auto-saved in IndexedDB; this confirms and refreshes UI
+                flashSaved();
+                showToast('✅ All progress saved!', 'success');
+                renderAll();
+            }
+
+            // ============ FORMAT FILE SIZE ============
+            function formatSize(bytes) {
+                if (bytes === 0) return '0 B';
+                if (bytes < 1024) return bytes + ' B';
+                if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + ' MB';
+                return (bytes / 1073741824).toFixed(2) + ' GB';
+            }
+
+            // ============ FILE TYPE DETECTION ============
+            function isVideoFile(fileName) {
+                const ext = fileName.split('.').pop().toLowerCase();
+                return ['mp4', 'mov', 'avi', 'mkv', 'webm', 'flv', 'wmv', 'm4v', '3gp', 'ts', 'mts'].includes(ext);
+            }
+
+            function isImageFile(fileName) {
+                const ext = fileName.split('.').pop().toLowerCase();
+                return ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'tiff', 'tif', 'ico', 'heic', 'heif', 'avif']
+                    .includes(ext);
+            }
+
+            function getFileIcon(fileName) {
+                if (isVideoFile(fileName)) return '🎬';
+                if (isImageFile(fileName)) return '🖼️';
+                const ext = fileName.split('.').pop().toLowerCase();
+                if (['pdf'].includes(ext)) return '📄';
+                if (['zip', 'rar', '7z', 'tar', 'gz'].includes(ext)) return '🗜️';
+                if (['mp3', 'wav', 'aac', 'flac', 'ogg'].includes(ext)) return '🎵';
+                if (['psd', 'ai', 'afdesign', 'afphoto'].includes(ext)) return '🎨';
+                return '📎';
+            }
+
+            // ============ UPLOAD FILES ============
+            fileInput.addEventListener('change', (e) => {
+                const files = Array.from(e.target.files);
+                if (files.length > 0) {
+                    processUploads(files);
+                    fileInput.value = '';
+                }
+            });
+
+            // Drag & Drop
+            uploadZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                uploadZone.classList.add('drag-over');
+            });
+            uploadZone.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                uploadZone.classList.remove('drag-over');
+            });
+            uploadZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                uploadZone.classList.remove('drag-over');
+                const files = Array.from(e.dataTransfer.files);
+                if (files.length > 0) {
+                    processUploads(files);
+                }
+            });
+
+            async function processUploads(files) {
+                uploadProgressWrap.classList.add('active');
+                uploadProgressWrap.innerHTML = '';
+
+                for (const file of files) {
+                    const progressItem = document.createElement('div');
+                    progressItem.className = 'upload-progress-item';
+                    progressItem.innerHTML = `
+                <span>${getFileIcon(file.name)}</span>
+                <span style="flex:1;min-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${file.name}</span>
+                <span style="font-size:0.7rem;color:var(--text3);">${formatSize(file.size)}</span>
+                <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+                <span class="progress-pct">0%</span>
+              `;
+                    uploadProgressWrap.appendChild(progressItem);
+
+                    const progressFill = progressItem.querySelector('.progress-bar-fill');
+                    const progressPct = progressItem.querySelector('.progress-pct');
+
+                    try {
+                        // Read file as ArrayBuffer with progress
+                        const arrayBuffer = await readFileWithProgress(file, (pct) => {
+                            progressFill.style.width = pct + '%';
+                            progressPct.textContent = Math.round(pct) + '%';
+                        });
+
+                        // Determine folder
+                        const folderId = (currentFolderId === FOLDER_ALL) ? null : currentFolderId;
+
+                        // Store in IndexedDB
+                        const fileRecord = {
+                            name: file.name,
+                            type: file.type,
+                            size: file.size,
+                            blob: new Blob([arrayBuffer], { type: file.type }),
+                            folderId: folderId,
+                            uploadDate: new Date().toISOString(),
+                        };
+
+                        await dbAdd('files', fileRecord);
+                        progressFill.style.width = '100%';
+                        progressPct.textContent = '100%';
+                        progressPct.style.color = '#25D366';
+                        progressItem.style.opacity = '0.7';
+
+                    } catch (err) {
+                        console.error('Upload error:', err);
+                        progressPct.textContent = 'Error';
+                        progressPct.style.color = '#e63946';
+                        if (err.name === 'QuotaExceededError') {
+                            showToast('⚠️ Storage full! Try deleting some files.', 'error');
+                        } else {
+                            showToast('❌ Failed to upload: ' + file.name, 'error');
+                        }
+                    }
+                }
+
+                // Clean up progress after a delay
+                setTimeout(() => {
+                    uploadProgressWrap.classList.remove('active');
+                    uploadProgressWrap.innerHTML = '';
+                }, 2000);
+
+                await loadAllFiles();
+                renderAll();
+                flashSaved();
+                showToast(`✅ ${files.length} file(s) uploaded & saved!`, 'success');
+            }
+
+            function readFileWithProgress(file, onProgress) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onprogress = (e) => {
+                        if (e.lengthComputable) {
+                            const pct = (e.loaded / e.total) * 100;
+                            onProgress(pct);
+                        }
+                    };
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = () => reject(reader.error);
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+
+            // ============ FOLDERS ============
+            async function createFolder() {
+                const name = newFolderInput.value.trim();
+                if (!name) {
+                    showToast('Please enter a folder name', 'error');
+                    return;
+                }
+                const existing = allFolders.find(f => f.name.toLowerCase() === name.toLowerCase());
+                if (existing) {
+                    showToast('Folder already exists!', 'error');
+                    return;
+                }
+                await dbAdd('folders', { name: name, createdDate: new Date().toISOString() });
+                newFolderInput.value = '';
+                await loadAllFolders();
+                renderFolderTabs();
+                showToast('📁 Folder created!', 'success');
+                flashSaved();
+            }
+
+            async function deleteFolder(folderId) {
+                if (!confirm('Delete this folder? Files inside will become unorganized (not deleted).')) return;
+                // Update all files in this folder to have no folder
+                const filesInFolder = await dbGetByIndex('files', 'folderId', folderId);
+                for (const f of filesInFolder) {
+                    f.folderId = null;
+                    await dbPut('files', f);
+                }
+                await dbDelete('folders', folderId);
+                if (currentFolderId === folderId) {
+                    currentFolderId = FOLDER_ALL;
+                }
+                await loadAllFolders();
+                await loadAllFiles();
+                renderAll();
+                flashSaved();
+                showToast('Folder deleted', 'success');
+            }
+
+            function selectFolder(folderId) {
+                currentFolderId = folderId;
+                renderFolderTabs();
+                renderFileGrid();
+            }
+
+            // ============ LOAD DATA ============
+            async function loadAllFolders() {
+                allFolders = await dbGetAll('folders');
+            }
+
+            async function loadAllFiles() {
+                allFiles = await dbGetAll('files');
+            }
+
+            function getFilteredFiles() {
+                if (currentFolderId === FOLDER_ALL) return allFiles;
+                return allFiles.filter(f => f.folderId === currentFolderId);
+            }
+
+            // ============ RENDER ============
+            function renderAll() {
+                renderFolderTabs();
+                renderFileGrid();
+            }
+
+            function renderFolderTabs() {
+                folderTabs.innerHTML = '';
+                const allTab = document.createElement('span');
+                allTab.className = 'folder-tab' + (currentFolderId === FOLDER_ALL ? ' active' : '');
+                allTab.dataset.folder = FOLDER_ALL;
+                allTab.textContent = '📁 All Files';
+                allTab.onclick = () => selectFolder(FOLDER_ALL);
+                folderTabs.appendChild(allTab);
+
+                allFolders.forEach(folder => {
+                    const tab = document.createElement('span');
+                    tab.className = 'folder-tab' + (currentFolderId === folder.id ? ' active' : '');
+                    tab.dataset.folder = folder.id;
+                    tab.textContent = '📂 ' + folder.name;
+                    tab.onclick = () => selectFolder(folder.id);
+                    // Double-click to delete folder
+                    tab.ondblclick = (e) => {
+                        e.stopPropagation();
+                        deleteFolder(folder.id);
+                    };
+                    tab.title = 'Double-click to delete folder';
+                    folderTabs.appendChild(tab);
+                });
+            }
+
+            function renderFileGrid() {
+                const filtered = getFilteredFiles();
+                fileGrid.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    fileGrid.innerHTML = `
+                <div class="empty-state">
+                  <span class="empty-icon">📭</span>
+                  ${currentFolderId === FOLDER_ALL ? 'No files uploaded yet.<br>Tap the upload area above to get started!' : 'This folder is empty.<br>Upload files or drag them here!'}
+                </div>`;
+                    return;
+                }
+
+                // Sort by upload date, newest first
+                const sorted = [...filtered].sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate));
+
+                sorted.forEach((file, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'file-card';
+                    card.dataset.fileId = file.id;
+                    card.dataset.index = index;
+
+                    const thumb = document.createElement('div');
+                    thumb.className = 'thumb';
+
+                    if (isImageFile(file.name) && file.blob) {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file.blob);
+                        img.alt = file.name;
+                        img.loading = 'lazy';
+                        thumb.appendChild(img);
+                    } else if (isVideoFile(file.name)) {
+                        thumb.innerHTML =
+                            `<span style="font-size:3rem;">🎬</span><div class="video-icon-overlay">▶</div>`;
+                        // Try to generate thumbnail
+                        if (file.blob) {
+                            generateVideoThumb(file.blob).then(thumbUrl => {
+                                if (thumbUrl && thumb.querySelector('span')) {
+                                    thumb.innerHTML = '';
+                                    const img = document.createElement('img');
+                                    img.src = thumbUrl;
+                                    img.alt = file.name;
+                                    thumb.appendChild(img);
+                                    const overlay = document.createElement('div');
+                                    overlay.className = 'video-icon-overlay';
+                                    overlay.textContent = '▶';
+                                    thumb.appendChild(overlay);
+                                }
+                            }).catch(() => {});
+                        }
+                    } else {
+                        thumb.innerHTML = `<span style="font-size:3rem;">${getFileIcon(file.name)}</span>`;
+                    }
+
+                    const info = document.createElement('div');
+                    info.className = 'file-info';
+                    info.innerHTML = `
+                <div class="file-name" title="${escapeHTML(file.name)}">${escapeHTML(file.name)}</div>
+                <div class="file-meta">
+                  <span>${formatSize(file.size)}</span>
+                  <span>${new Date(file.uploadDate).toLocaleDateString()}</span>
+                </div>
+              `;
+
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-file-btn';
+                    deleteBtn.textContent = '🗑';
+                    deleteBtn.title = 'Delete file';
+                    deleteBtn.onclick = async (e) => {
+                        e.stopPropagation();
+                        if (confirm('Delete "' + file.name + '"?')) {
+                            await dbDelete('files', file.id);
+                            await loadAllFiles();
+                            renderAll();
+                            flashSaved();
+                            showToast('File deleted', 'success');
+                        }
+                    };
+
+                    card.appendChild(thumb);
+                    card.appendChild(info);
+                    card.appendChild(deleteBtn);
+
+                    // Click to view fullscreen
+                    card.onclick = (e) => {
+                        if (e.target === deleteBtn) return;
+                        openViewer(sorted, index);
+                    };
+
+                    fileGrid.appendChild(card);
+                });
+            }
+
+            function escapeHTML(str) {
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            // Generate video thumbnail
+            function generateVideoThumb(blob) {
+                return new Promise((resolve) => {
+                    const url = URL.createObjectURL(blob);
+                    const video = document.createElement('video');
+                    video.crossOrigin = 'anonymous';
+                    video.preload = 'metadata';
+                    video.muted = true;
+                    video.playsInline = true;
+                    video.src = url;
+                    video.onloadedmetadata = () => {
+                        video.currentTime = Math.min(1, video.duration / 3 || 1);
+                    };
+                    video.onseeked = () => {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = video.videoWidth || 320;
+                        canvas.height = video.videoHeight || 180;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        const thumbUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        URL.revokeObjectURL(url);
+                        video.remove();
+                        resolve(thumbUrl);
+                    };
+                    video.onerror = () => {
+                        URL.revokeObjectURL(url);
+                        video.remove();
+                        resolve(null);
+                    };
+                    // Timeout fallback
+                    setTimeout(() => {
+                        if (video.readyState < 2) {
+                            URL.revokeObjectURL(url);
+                            video.remove();
+                            resolve(null);
+                        }
+                    }, 4000);
+                });
+            }
+
+            // ============ FULLSCREEN VIEWER ============
+            function openViewer(files, index) {
+                viewerFiles = files;
+                viewerIndex = Math.max(0, Math.min(index, files.length - 1));
+                isViewerOpen = true;
+                viewerOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                showViewerFile();
+            }
+
+            function closeViewer() {
+                isViewerOpen = false;
+                viewerOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                viewerContent.innerHTML = '';
+                // Pause any playing video
+                const vid = viewerContent.querySelector('video');
+                if (vid) vid.pause();
+            }
+
+            function showViewerFile() {
+                if (viewerFiles.length === 0) {
+                    closeViewer();
+                    return;
+                }
+                viewerIndex = Math.max(0, Math.min(viewerIndex, viewerFiles.length - 1));
+                const file = viewerFiles[viewerIndex];
+                viewerContent.innerHTML = '';
+                viewerCounter.textContent = `${viewerIndex + 1} / ${viewerFiles.length}`;
+                viewerFileName.textContent = file.name;
+
+                if (file.blob) {
+                    const blobUrl = URL.createObjectURL(file.blob);
+                    if (isVideoFile(file.name)) {
+                        const video = document.createElement('video');
+                        video.src = blobUrl;
+                        video.controls = true;
+                        video.autoplay = true;
+                        video.playsInline = false;
+                        video.style.maxWidth = '95vw';
+                        video.style.maxHeight = '85vh';
+                        video.style.borderRadius = '8px';
+                        video.style.boxShadow = '0 0 60px rgba(0,0,0,0.8)';
+                        video.style.outline = 'none';
+                        video.onplay = () => {
+                            if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
+                        };
+                        viewerContent.appendChild(video);
+                        // Store for cleanup
+                        video.dataset.blobUrl = blobUrl;
+                        video.addEventListener('ended', () => {
+                            if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+                        });
+                    } else if (isImageFile(file.name)) {
+                        const img = document.createElement('img');
+                        img.src = blobUrl;
+                        img.alt = file.name;
+                        img.draggable = false;
+                        img.style.userSelect = 'none';
+                        img.style.webkitUserDrag = 'none';
+                        viewerContent.appendChild(img);
+                        // Store for cleanup
+                        img.dataset.blobUrl = blobUrl;
+                    } else {
+                        viewerContent.innerHTML = `
+                  <div style="text-align:center;color:#ccc;">
+                    <span style="font-size:5rem;">${getFileIcon(file.name)}</span>
+                    <p style="margin-top:12px;">${escapeHTML(file.name)}</p>
+                    <p style="color:#888;">${formatSize(file.size)}</p>
+                    <p style="color:#666;font-size:0.8rem;">Preview not available for this file type</p>
+                  </div>`;
+                    }
+                }
+
+                viewerPrev.style.display = viewerFiles.length > 1 ? 'flex' : 'none';
+                viewerNext.style.display = viewerFiles.length > 1 ? 'flex' : 'none';
+            }
+
+            function viewerNavigate(direction) {
+                // Clean up blob URLs from current content
+                const elements = viewerContent.querySelectorAll('[data-blob-url]');
+                elements.forEach(el => {
+                    if (el.dataset.blobUrl) URL.revokeObjectURL(el.dataset.blobUrl);
+                });
+                // Pause video
+                const vid = viewerContent.querySelector('video');
+                if (vid) {
+                    vid.pause();
+                    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+                }
+
+                viewerIndex += direction;
+                if (viewerIndex < 0) viewerIndex = viewerFiles.length - 1;
+                if (viewerIndex >= viewerFiles.length) viewerIndex = 0;
+                showViewerFile();
+            }
+
+            viewerClose.addEventListener('click', closeViewer);
+            viewerPrev.addEventListener('click', () => viewerNavigate(-1));
+            viewerNext.addEventListener('click', () => viewerNavigate(1));
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!isViewerOpen) return;
+                if (e.key === 'Escape') closeViewer();
+                if (e.key === 'ArrowLeft') viewerNavigate(-1);
+                if (e.key === 'ArrowRight') viewerNavigate(1);
+            });
+
+            // Swipe support for images
+            let swipeStartX = 0;
+            let swipeStartY = 0;
+            let swipeActive = false;
+            let swipeOffsetX = 0;
+
+            viewerContent.addEventListener('touchstart', (e) => {
+                if (!isViewerOpen) return;
+                const file = viewerFiles[viewerIndex];
+                if (!file || !isImageFile(file.name)) return;
+                swipeStartX = e.touches[0].clientX;
+                swipeStartY = e.touches[0].clientY;
+                swipeActive = true;
+                swipeOffsetX = 0;
+                const img = viewerContent.querySelector('img');
+                if (img) img.style.transition = 'none';
+            }, { passive: true });
+
+            viewerContent.addEventListener('touchmove', (e) => {
+                if (!swipeActive || !isViewerOpen) return;
+                const file = viewerFiles[viewerIndex];
+                if (!file || !isImageFile(file.name)) return;
+                const dx = e.touches[0].clientX - swipeStartX;
+                const dy = e.touches[0].clientY - swipeStartY;
+                if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+                    swipeOffsetX = dx;
+                    const img = viewerContent.querySelector('img');
+                    if (img) {
+                        img.style.transform = `translateX(${dx}px)`;
+                        img.style.opacity = Math.max(0.3, 1 - Math.abs(dx) / 400);
+                    }
+                }
+            }, { passive: true });
+
+            viewerContent.addEventListener('touchend', () => {
+                if (!swipeActive || !isViewerOpen) return;
+                swipeActive = false;
+                const file = viewerFiles[viewerIndex];
+                if (!file || !isImageFile(file.name)) {
+                    const img = viewerContent.querySelector('img');
+                    if (img) {
+                        img.style.transition = 'transform 0.2s ease-out, opacity 0.2s';
+                        img.style.transform = 'translateX(0)';
+                        img.style.opacity = '1';
+                    }
+                    return;
+                }
+                const img = viewerContent.querySelector('img');
+                if (img) {
+                    img.style.transition = 'transform 0.25s ease-out, opacity 0.25s';
+                }
+                if (Math.abs(swipeOffsetX) > 80) {
+                    if (swipeOffsetX < 0) viewerNavigate(1);
+                    else viewerNavigate(-1);
+                } else {
+                    if (img) {
+                        img.style.transform = 'translateX(0)';
+                        img.style.opacity = '1';
+                    }
+                }
+                swipeOffsetX = 0;
+            });
+
+            // Mouse drag for desktop
+            viewerContent.addEventListener('mousedown', (e) => {
+                if (!isViewerOpen) return;
+                const file = viewerFiles[viewerIndex];
+                if (!file || !isImageFile(file.name)) return;
+                swipeStartX = e.clientX;
+                swipeStartY = e.clientY;
+                swipeActive = true;
+                swipeOffsetX = 0;
+                const img = viewerContent.querySelector('img');
+                if (img) img.style.transition = 'none';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!swipeActive || !isViewerOpen) return;
+                const file = viewerFiles[viewerIndex];
+                if (!file || !isImageFile(file.name)) return;
+                const dx = e.clientX - swipeStartX;
+                swipeOffsetX = dx;
+                const img = viewerContent.querySelector('img');
+                if (img) {
+                    img.style.transform = `translateX(${dx}px)`;
+                    img.style.opacity = Math.max(0.3, 1 - Math.abs(dx) / 400);
+                }
+            });
+            document.addEventListener('mouseup', () => {
+                if (!swipeActive || !isViewerOpen) return;
+                swipeActive = false;
+                const file = viewerFiles[viewerIndex];
+                const img = viewerContent.querySelector('img');
+                if (img) {
+                    img.style.transition = 'transform 0.25s ease-out, opacity 0.25s';
+                }
+                if (file && isImageFile(file.name) && Math.abs(swipeOffsetX) > 80) {
+                    if (swipeOffsetX < 0) viewerNavigate(1);
+                    else viewerNavigate(-1);
+                } else {
+                    if (img) {
+                        img.style.transform = 'translateX(0)';
+                        img.style.opacity = '1';
+                    }
+                }
+                swipeOffsetX = 0;
+            });
+
+            // Close viewer on overlay click (background)
+            viewerOverlay.addEventListener('click', (e) => {
+                if (e.target === viewerOverlay) {
+                    closeViewer();
+                }
+            });
+
+            // ============ WHATSAPP ============
+            function openWhatsApp(number) {
+                const url = 'https://wa.me/' + number;
+                window.open(url, '_blank', 'noopener');
+            }
+            // Expose to global scope for onclick
+            window.openWhatsApp = openWhatsApp;
+
+            // ============ SCROLL TO TOP ============
+            window.scrollToTop = function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // ============ INIT ============
+            async function init() {
+                try {
+                    await openDB();
+                    await loadAllFolders();
+                    await loadAllFiles();
+                    renderAll();
+                    console.log('✅ WIZE File Manager initialized. Files:', allFiles.length, 'Folders:',
+                        allFolders.length);
+                } catch (err) {
+                    console.error('Init error:', err);
+                    showToast('⚠️ Could not initialize storage. Please allow storage access.', 'error');
+                }
+            }
+
+            // Handle storage quota errors globally
+            window.addEventListener('error', (e) => {
+                if (e.target && e.target.error && e.target.error.name === 'QuotaExceededError') {
+                    showToast('⚠️ Storage quota exceeded! Delete some files to free space.', 'error');
+                }
+            });
+
+            // Periodic auto-save indicator (data is already persisted in IndexedDB)
+            setInterval(() => {
+                if (allFiles.length > 0 || allFolders.length > 0) {
+                    // Data is auto-saved; just a heartbeat
+                }
+            }, 30000);
+
+            // Start the app
+            init();
+
+            console.log('🎨 WIZE - The Young Graphic Designers');
+            console.log('📁 File Manager ready. Upload videos, photos, posters & more!');
+            console.log('💾 All data auto-saves to browser storage (IndexedDB).');
+            console.log('📱 YouTube: @wize6473 | Instagram: wize.vfx');
+        })();
+    </script>
+</body>
+</html>
